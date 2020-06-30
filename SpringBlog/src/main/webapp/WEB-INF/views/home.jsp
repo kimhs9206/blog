@@ -1,11 +1,11 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> <%@ page
-contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> <%@ page
-session="false" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <html>
   <head>
     <title>Home</title>
    
-    <link rel="stylesheet" href="resources/css/index.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/rayout.css" />
   </head>
   <body>
 <div class="wrap">
@@ -15,7 +15,7 @@ session="false" %>
         <a href="#"class="header-logo"><i class="fab fa-accusoft"></i>MyBlog</a>
         <!--로그인 -로그아웃 -->
           <a class="header-serch" href="#"><i class="fas fa-search"></i>검색</a>          
-      </div>
+      
     </header>
     <!-- 네비메뉴 카테고리,블로그주인설명,today,total,yesterday 접속자 수 -->
     <div class="content">
@@ -40,6 +40,7 @@ session="false" %>
     
     <!-- 작은화면 네비 사용 버튼 -->
     <a href="#"class="content-category-toggleBtn"><i class="fas fa-arrow-right"></i>category</a>
+    <!-- 메인 컨텐츠 영역 -->
     <article class="content-mainContent">
       메인컨텐츠 영역
     </article>
@@ -52,5 +53,5 @@ session="false" %>
   <script
   src="https://kit.fontawesome.com/2f97bf7127.js"
   crossorigin="anonymous"></script>
-  <script src="resouces/js/index.js"></script>
+  <script type="text/javascript"src="${pageContext.request.contextPath }/resources/blog.js"></script>
 </html>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+	<mapper namespace="com.hyeonsu.blog.board.boardMapper">
+	<!-- 게시글 목록 보기 -->
+	<select id ="getBoardList" resultType="com.hyeonsu.blog.board.model.BoardVO">
+		select
+			bid,cate_cd,title,content,tag,view_cnt,reg_id,reg_dt,edit_dt
+		from
+			tbl_board
+	</select>
+	<!-- 게시글 상세보기 -->
+	<select id="getBoardContent" resultType="com.hyeonsu.blog.board.model.BoardVO">
+		select
+			bid,cate_cd,title,content,tag,view_cnt,reg_id,reg_dt,edit_dt
+		from
+			tbl_board
+		where
+			bid=#{bid}
+	</select>
+	<!-- 게시글 추가 -->
+	<insert id="insertBoard" parameterType="com.hyeonsu.blog.board.model.BoardVO">
+		insert into tbl_board(cate_cd,title,content,tag,view_cnt,reg_id,reg_dt,edit_dt)
+		values(
+				#{cate_cd},#{title},#{content},#{tag},0,#{reg_id},now(),now()
+		)
+	</insert>
+	<!-- 게시글 삭제 -->
+	<delete id="deleteBoard" parameterType="com.hyeonsu.blog.board.model.BoardVO">
+		delete from tbl_board
+		where bid=#{bid}
+	</delete>
+	<!-- 게시글 수정 -->
+	<update id="updateBoard" parameterType="com.hyeonsu.blog.board.model.BoardVO">
+		update tbl_board
+		   set
+				cate_cd = #{cate_cd}, 
+				title=#{title},
+				content=#{content},
+				tag=#{tag},
+				edit_dt=now()
+		 where bid=#{bid}
+	</update>
+	<!-- 조회수 증가 -->
+	<update id="updateViewCnt" parameterType="com.hyeonsu.blog.board.model.BoardVO">
+		update tbl_board
+		   set
+				view_cnt = view_cnt + 1
+		 where bid=#{bid}
+	</update>
+	</mapper>
+	

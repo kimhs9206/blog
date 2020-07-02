@@ -49,17 +49,25 @@ a {
   display: block;
   background: grey;
   z-index: 1;
-  grid-row: 1/13;
-  grid-column: 1/5;
+  grid-row: 1/14;
+  grid-column: 1/4;
 }
 .content-mainContent {
   background: lightgray;
-  grid-column: 2/12;
+  grid-column: 3/11;
   grid-row: 1/13;
   height: 90vh;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(12, 1fr);
+  height: 90vh;
+  width: 100%;
 }
 .content-category-toggleBtn {
   position: absolute;
   top: 20px;
   left: 140px;
+}
+.footer{
+	text-align:center;
 }

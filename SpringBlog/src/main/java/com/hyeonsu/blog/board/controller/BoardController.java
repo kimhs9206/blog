@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.hyeonsu.blog.board.model.BoardVO;
@@ -34,11 +35,25 @@ public class BoardController {
 	//화면에서 넘겨주는 값을 BoardVO와 매칭시켜 데이터를 받아오게된다.
 	//RedirectAttributes rttr
 	//글쓰기 이후 돌아가야할 페이지에 데이터를 전달 
-	@RequestMapping(value="/insertBoard",method=RequestMethod.POST)
+	@RequestMapping(value="/saveBoard",method=RequestMethod.POST)
 	public String insertBoard(@ModelAttribute("BoardVO")BoardVO boardVO,RedirectAttributes rttr) {
 		boardService.insertBoard(boardVO);
 		return "redirect:/board/getBoardList";
 		
+	}
+	@RequestMapping(value="/getBoardContent",method=RequestMethod.GET)
+	public String getBoardContent(Model model,@RequestParam("bid")int bid) {
+		model.addAttribute("boardContent",boardService.getBoardContent(bid));
+		return "/board/boardContent";
+	}
+	@RequestMapping(value="/updateForm",method=RequestMethod.GET)
+	public String updateForm(@RequestParam("bid")int bid,@RequestParam("mode") String mode,Model model) {
+		model.addAttribute("boardContent", boardService.getBoardContent(bid));
+		model.addAttribute("mode", mode);
+		model.addAttribute("boardVO",new BoardVO());
+		
+		
+		return "/board/boardForm";
 	}
 
 }

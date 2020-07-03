@@ -10,5 +10,7 @@ public interface BoardService {
 	public List<BoardVO> getBoardList();
 	//게시글 작성
 	public void insertBoard(BoardVO boardVO);
+	//게시글 상세 조회
+	public BoardVO getBoardContent(int bid);
 	
 }

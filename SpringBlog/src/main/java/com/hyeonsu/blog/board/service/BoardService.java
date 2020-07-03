@@ -12,5 +12,9 @@ public interface BoardService {
 	public void insertBoard(BoardVO boardVO);
 	//게시글 상세 조회
 	public BoardVO getBoardContent(int bid);
+	//게시글 수정
+	public void updateBoard(BoardVO boardVO);
+	//게시글 삭제
+	public void deleteBoard(int bid);
 	
 }

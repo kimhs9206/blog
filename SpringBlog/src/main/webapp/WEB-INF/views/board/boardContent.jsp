@@ -52,5 +52,12 @@
 		
 		location.href=url;
 	});
+	//삭제버튼
+	$(document).on('click','#deleteBtn',function(e){
+		var url = "${pageContext.request.contextPath }/board/deleteBoard";
+		url = url+"?bid="+${boardContent.bid};
+		
+		location.href=url;
+	});
 </script>
 </html>

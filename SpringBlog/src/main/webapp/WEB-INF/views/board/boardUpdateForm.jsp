@@ -14,30 +14,30 @@
 		<div class="container">
 			<h2>글쓰기 페이지</h2>
 			<form action="${pageContext.request.contextPath }/board/saveBoard" method="post" id="form">
-				<hidden path="bid"/>
-				<input type="hidden" name="mode"/>
+				<input type="hidden" name="bid" value="${boardContent.bid }"/>
+				<input type="hidden" name="mode" value="update"/>
 				<div class="mb-3">
 					<label>제목</label>
-					<input class="form-control" type="text" name="title" placeholder="제목을 입력해주세요"/>
+					<input class="form-control" type="text" name="title" value="${boardContent.title }"/>
 				</div>
 				<div class="mb-3">
 					<label>작성자</label>
-					<input class="form-control" type="text" name="reg_id" placeholder="이름을 입력해주세요"/>
+					<input class="form-control" type="text" name="reg_id"value="${boardContent.reg_id }" readonly/>
 				</div>
 				<div class="mb-3">
 					<label>카테고리</label>
-					<input class="form-control" type="text" name="cate_cd" placeholder="카테고리를 입력해주세요"/>
+					<input class="form-control" type="text" name="cate_cd"value="${boardContent.cate_cd }"/>
 				</div>
 				<div class="mb-3">
 					<label>내용</label>
-					<textarea class="form-control" rows="5" name="content" placeholder="내용을 입력해주세요"></textarea>
+					<textarea class="form-control" rows="5" name="content">${boardContent.content }</textarea>
 				</div>
 				<div class="mb-3">
 					<label>태그</label>
-					<input class="form-control" type="text" name="tag" placeholder="태그를 입력해주세요"/>
+					<input class="form-control" type="text" name="tag" value="${boardContent.tag }"/>
 				</div>
 			</form>
-			<button id="saveBtn"class="btn btn-primary">작성</button>
+			<button id="saveBtn"class="btn btn-primary">수정</button>
 			<button id="listBtn"class="btn btn-secondary">목록</button>
 		</div>
 	</article>

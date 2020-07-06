@@ -14,6 +14,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.hyeonsu.blog.board.dao.BoardDAO;
 import com.hyeonsu.blog.board.model.BoardVO;
+import com.hyeonsu.blog.common.Pagination;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations= {"classpath:spring/dataSource-context.xml","classpath:spring/root-context.xml"})
@@ -24,9 +25,9 @@ public class BoardDAOTest {
 	private BoardDAO boardDAO;
 	//게시글 목록보기 테스트
 	@Ignore
-	public void getBoardList() {
+	public void getBoardList(Pagination pagination) {
 		
-		List<BoardVO> boardList = boardDAO.getBoardList();
+		List<BoardVO> boardList = boardDAO.getBoardList(pagination);
 		
 		logger.info("\n BoardList \n");
 		
@@ -57,9 +58,9 @@ public class BoardDAOTest {
 		}
 	}
 	//게시글 등록 테스트
-	@Ignore
+	@Test
 	public void insertBoard() {
-		
+		for(int i =0;i<=1000;i++) {
 		BoardVO boardVO = new BoardVO();
 		boardVO.setCate_cd("Java");
 		boardVO.setContent("Java 카테고리 안에 들어가 있는 게시물의 내용");
@@ -73,6 +74,7 @@ public class BoardDAOTest {
 			logger.info("데이터 입력 성공!");
 		}else {
 			logger.info("데이터 입력 실패!");
+		}
 		}
 	}
 	@Ignore
@@ -105,7 +107,7 @@ public class BoardDAOTest {
 			logger.info("데이터 수정 실패!");
 		}
 	}
-	@Test
+	@Ignore
 	public void updateViewCnt() {
 		int result = boardDAO.updateViewCnt(2);
 		logger.info("\n updateViewCnt" + result +"\n");

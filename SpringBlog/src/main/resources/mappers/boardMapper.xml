@@ -4,12 +4,20 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
 	<mapper namespace="com.hyeonsu.blog.board.boardMapper">
+	<!-- 게시글 총 개수 -->
+	<select id="getBoardCnt" resultType="int">
+		select 
+				count(*)as listCnt 
+		  from
+		  		tbl_board
+	</select>
 	<!-- 게시글 목록 보기 -->
 	<select id ="getBoardList" resultType="com.hyeonsu.blog.board.model.BoardVO">
 		select
 			bid,cate_cd,title,content,tag,view_cnt,reg_id,reg_dt,edit_dt
 		from
 			tbl_board
+		limit #{startList},#{listSize}
 	</select>
 	<!-- 게시글 상세보기 -->
 	<select id="getBoardContent" resultType="com.hyeonsu.blog.board.model.BoardVO">

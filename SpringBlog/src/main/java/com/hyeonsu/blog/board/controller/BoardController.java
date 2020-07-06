@@ -12,6 +12,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.hyeonsu.blog.board.model.BoardVO;
 import com.hyeonsu.blog.board.service.BoardService;
+import com.hyeonsu.blog.common.Pagination;
 
 @Controller
 @RequestMapping(value="/board")
@@ -19,10 +20,21 @@ public class BoardController {
 	@Inject
 	private BoardService boardService;
 	
+	
 	//게시글 목록 보기
 	@RequestMapping(value="/getBoardList",method=RequestMethod.GET)
-	public String getBoardList(Model model) {
-		model.addAttribute("boardList",boardService.getBoardList());
+	public String getBoardList(
+								Model model,
+								@RequestParam(required = false, defaultValue="1") int page,
+								@RequestParam(required = false, defaultValue="1") int range) {
+		//게시글 전체개수
+		int listCnt = boardService.getBoardCnt();
+		//Pagination 객채 생성
+		Pagination pagination = new Pagination();
+		pagination.pageInfo(page,range,listCnt);
+		
+		model.addAttribute("pagination",pagination);
+		model.addAttribute("boardList",boardService.getBoardList(pagination));
 		return "board/content";
 	}
 	//게시글 쓰기
@@ -67,5 +79,6 @@ public class BoardController {
 		boardService.deleteBoard(bid);
 		return "redirect:/board/getBoardList";
 	}
+
 
 }
